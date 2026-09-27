@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <iostream>
 #include <fstream>
+#include <vector>
 using namespace std;
 
 //Set up the Movie class
@@ -22,3 +23,30 @@ class Movie
         //Set up the print function
         void print();
 };
+
+int main()
+{
+    fstream movies;
+    movies.open("input.txt");
+    vector<Movie> movList;
+
+    string s, n; //Stores name and screenwriter
+    int y; //Stores year
+    if (movies.good())
+    {
+        while (getline(movies, s))
+        {
+            movies.ignore();
+            movies >> y;
+            getline(movies, n);
+
+            Movie temp;
+            temp.setScreenWriter(s);
+            temp.setYear(y);
+            temp.setName(n);
+            movList.push_back(temp);
+        }
+    }
+    else
+        cout << "Invalid text file. Try again next time!" << endl;
+}
