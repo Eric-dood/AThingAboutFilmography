@@ -21,12 +21,17 @@ class Movie
         void setName(string msg) { name = msg; }
         void setYear(int val) { year = val; }
         //Set up the print function
-        void print();
+        void print()
+        {
+            cout << "Movie: " << getName() << endl;
+            cout << setw(10) << "Year released: " << getYear() << endl;
+            cout << setw(10) << "Screenwriter: " << getScreenWriter() << endl;
+        }
 };
 
 int main()
 {
-    fstream movies;
+    ifstream movies;
     movies.open("input.txt");
     vector<Movie> movList;
 
@@ -46,7 +51,13 @@ int main()
             temp.setName(n);
             movList.push_back(temp);
         }
+
+        movies.close();
     }
     else
         cout << "Invalid text file. Try again next time!" << endl;
+    
+    //Print the movie list
+    for (int i = 0; i < movList.size(); i++)
+        movList[i].print();
 }
