@@ -24,8 +24,8 @@ class Movie
         void print()
         {
             cout << "Movie: " << getName() << endl;
-            cout << setw(10) << "Year released: " << getYear() << endl;
-            cout << setw(10) << "Screenwriter: " << getScreenWriter() << endl;
+            cout << "Year released: " << getYear() << endl;
+            cout << "Screenwriter: " << getScreenWriter() << endl << endl;
         }
 };
 
@@ -41,8 +41,8 @@ int main()
     {
         while (getline(movies, s))
         {
-            movies.ignore();
             movies >> y;
+            movies.ignore(1000, 10);
             getline(movies, n);
 
             Movie temp;
